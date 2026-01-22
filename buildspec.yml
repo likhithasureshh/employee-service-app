@@ -6,6 +6,7 @@ phases:
       java: corretto21
     commands:
       - echo Installing Maven...
+
   build:
     commands:
       - echo "Building Spring Boot application..."
@@ -13,10 +14,10 @@ phases:
       - echo "Copying JAR to root level for Elastic Beanstalk..."
       - cp target/*-SNAPSHOT.jar application.jar
 
-  artifacts:
-    files:
-      - application.jar
+artifacts:
+  files:
+    - application.jar
 
 cache:
   paths:
-    - '/root/.m2/**/*'
+    - /root/.m2/**/*
