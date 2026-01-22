@@ -8,15 +8,15 @@ phases:
       - echo Installing Maven...
   build:
     commands:
-      - echo Building, Testing and packaging the application...
+      - echo "Building Spring Boot application..."
       - mvn clean package -DskipTests
-  post_build:
-    commands:
-      - echo Build, Testing and packaging completed.
-artifacts:
-  files:
-    - target/*.jar
-  discard-paths: yes
+      - echo "Copying JAR to root level for Elastic Beanstalk..."
+      - cp target/*-SNAPSHOT.jar application.jar
+
+  artifacts:
+    files:
+      - application.jar
+
 cache:
   paths:
     - '/root/.m2/**/*'
