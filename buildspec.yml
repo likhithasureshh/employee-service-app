@@ -5,14 +5,21 @@ phases:
     runtime-versions:
       java: corretto21
     commands:
-      - echo Installing Maven...
+      - echo "Installing Maven..."
 
   build:
     commands:
       - echo "Building Spring Boot application..."
-      - mvn clean package -DskipTests
+      - mvn clean install -DskipTests
+
+      - echo "Listing target directory contents..."
+      - ls -lh target/
+
+      - echo "Listing only JAR files..."
+      - ls -lh target/*.jar
+
       - echo "Copying JAR to root level for Elastic Beanstalk..."
-      - cp target/*-SNAPSHOT.jar application.jar
+      - cp target/*.jar application.jar
 
 artifacts:
   files:
